@@ -1,11 +1,42 @@
+/* eslint-disable no-unused-vars */
 import "./App.css";
+import React from "react";
+import { useState } from "react";
+import Home from "./pages/Home";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import PageNotFound from "./pages/PageNotFound";
 
-function App() {
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+
+import { ToastContainer } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.min.css";
+
+import firebase from "firebase/compat/app";
+
+import "firebase/auth";
+
+import { UserContext } from "./context/UserContext";
+
+const App = () => {
+  const [user, setUser] = useState(null);
+
   return (
-    <>
-    <h1>Hello World</h1>
-    </>
+    <Router>
+      <ToastContainer />
+      <UserContext.Provider value={{ user, setUser }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signin" element={<SignIn/>} />
+          <Route path="/signup" element={<SignUp/>} />
+          <Route path="*" element={<PageNotFound/>} />
+        </Routes>
+      </UserContext.Provider>
+    </Router>
   );
-}
+};
 
 export default App;
