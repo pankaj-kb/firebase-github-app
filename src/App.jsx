@@ -20,6 +20,8 @@ import firebase from "firebase/compat/app";
 import "firebase/auth";
 
 import { UserContext } from "./context/UserContext";
+import Header from "./layout/Header";
+import Footer from "./layout/Footer";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -28,12 +30,15 @@ const App = () => {
     <Router>
       <ToastContainer />
       <UserContext.Provider value={{ user, setUser }}>
+      <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/signin" element={<SignIn/>} />
-          <Route path="/signup" element={<SignUp/>} />
-          <Route path="*" element={<PageNotFound/>} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
+        <Footer />
       </UserContext.Provider>
     </Router>
   );
