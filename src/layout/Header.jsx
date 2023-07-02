@@ -39,7 +39,14 @@ const Header = () => {
         <Nav className="ml-auto" navbar>
           {context.user ? (
             <NavItem>
-              <NavLink tag={Link} to="/home" className="text-white">
+              <NavLink
+                onClick={() => {
+                  context.setUser(null);
+                }}
+                tag={Link}
+                to="/home"
+                className="text-white"
+              >
                 LogOut
               </NavLink>
             </NavItem>
